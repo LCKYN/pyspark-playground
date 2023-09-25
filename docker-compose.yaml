@@ -1,0 +1,36 @@
+version: '3'
+services:
+  spark-master:
+    container_name: spark-master
+    build:
+      context: ./spark-master
+    ports:
+      - "7077:7077"
+      - "8081:8080"
+    command: /bin/bash ./spark-master-entrypoint.sh
+
+  spark-worker:
+    container_name: spark-worker
+    build:
+      context: ./spark-worker
+    command: /bin/bash ./spark-worker-entrypoint.sh
+    ports:
+        - "8082:8081"
+        - "7078:7078"
+    environment:
+      - SPARK_MASTER=spark-master:7077
+      - SPARK_WORKER_PORT=7078
+
+  notebook:
+    container_name: notebook
+    image: jupyter/all-spark-notebook
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark-master
+    volumes:
+      - ./jupyter-notebook/notebooks:/home/jovyan
+      - ./jupyter-notebook/spark/conf:/opt/spark/conf/
+    ports:
+        - "8899:8888"
+    command: start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''
