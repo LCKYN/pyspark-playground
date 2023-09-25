@@ -1,4 +1,4 @@
-# README for Spark Cluster and Jupyter Notebook
+# Spark Cluster and Jupyter Notebook
 
 This repository contains a Docker Compose configuration to set up a Spark cluster and a Jupyter Notebook server for running Spark applications in a development environment.
 
