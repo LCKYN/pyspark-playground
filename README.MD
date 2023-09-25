@@ -13,20 +13,20 @@ Before you begin, make sure you have the following installed:
 1. Clone this repository to your local machine:
 
    ```shell
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/LCKYN/pyspark-playground.git
+   cd pyspark-playground
    ```
 
 2. Build the Docker containers for Spark master and worker nodes:
 
    ```shell
-   docker-compose build
+   docker compose build
    ```
 
 3. Start the Spark cluster and Jupyter Notebook server:
 
    ```shell
-   docker-compose up -d
+   docker compose up -d
    ```
 
    The `-d` flag runs the containers in the background.
@@ -77,7 +77,7 @@ You can customize this setup by modifying the following:
 To stop the Spark cluster and Jupyter Notebook server, run:
 
 ```shell
-docker-compose down
+docker compose down
 ```
 
 ## Cleaning Up
@@ -85,12 +85,12 @@ docker-compose down
 To remove all Docker containers and associated volumes, run:
 
 ```shell
-docker-compose down -v
+docker compose down -v
 ```
 
 ## Note
 
-- Ensure that the necessary Docker images are downloaded the first time you run `docker-compose up`. It may take some time to download the images depending on your internet connection speed.
+- Ensure that the necessary Docker images are downloaded the first time you run `docker compose up`. It may take some time to download the images depending on your internet connection speed.
 
 - This setup is intended for development and testing purposes. Ensure that you have the required resources (CPU and memory) available on your machine to run Spark applications effectively.
 
